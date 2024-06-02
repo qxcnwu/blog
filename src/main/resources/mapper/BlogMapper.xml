@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qxc.blog.dao.BlogMapper">
+  <resultMap id="BaseResultMap" type="com.qxc.blog.pojo.Blog">
+    <id column="index" jdbcType="BIGINT" property="index" />
+    <id column="username" jdbcType="VARCHAR" property="username" />
+    <id column="createdate" jdbcType="TIMESTAMP" property="createdate" />
+    <id column="changedate" jdbcType="TIMESTAMP" property="changedate" />
+    <result column="articleid" jdbcType="VARCHAR" property="articleid" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="role" jdbcType="VARCHAR" property="role" />
+    <result column="hasdelete" jdbcType="INTEGER" property="hasdelete" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    index, username, createdate, changedate, articleid, title, role, hasdelete
+  </sql>
+  <select id="selectByExample" parameterType="com.qxc.blog.pojo.BlogExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from blog
+    where index = #{index,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+      and createdate = #{createdate,jdbcType=TIMESTAMP}
+      and changedate = #{changedate,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogKey">
+    delete from blog
+    where index = #{index,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+      and createdate = #{createdate,jdbcType=TIMESTAMP}
+      and changedate = #{changedate,jdbcType=TIMESTAMP}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qxc.blog.pojo.BlogExample">
+    delete from blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qxc.blog.pojo.Blog">
+    insert into blog (index, username, createdate, 
+      changedate, articleid, title, 
+      role, hasdelete)
+    values (#{index,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+      #{changedate,jdbcType=TIMESTAMP}, #{articleid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{role,jdbcType=VARCHAR}, #{hasdelete,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.qxc.blog.pojo.Blog">
+    insert into blog
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="index != null">
+        index,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="createdate != null">
+        createdate,
+      </if>
+      <if test="changedate != null">
+        changedate,
+      </if>
+      <if test="articleid != null">
+        articleid,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="role != null">
+        role,
+      </if>
+      <if test="hasdelete != null">
+        hasdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="index != null">
+        #{index,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="createdate != null">
+        #{createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="changedate != null">
+        #{changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="articleid != null">
+        #{articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="hasdelete != null">
+        #{hasdelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qxc.blog.pojo.BlogExample" resultType="java.lang.Long">
+    select count(*) from blog
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update blog
+    <set>
+      <if test="record.index != null">
+        index = #{record.index,jdbcType=BIGINT},
+      </if>
+      <if test="record.username != null">
+        username = #{record.username,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createdate != null">
+        createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.changedate != null">
+        changedate = #{record.changedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.articleid != null">
+        articleid = #{record.articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.role != null">
+        role = #{record.role,jdbcType=VARCHAR},
+      </if>
+      <if test="record.hasdelete != null">
+        hasdelete = #{record.hasdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update blog
+    set index = #{record.index,jdbcType=BIGINT},
+      username = #{record.username,jdbcType=VARCHAR},
+      createdate = #{record.createdate,jdbcType=TIMESTAMP},
+      changedate = #{record.changedate,jdbcType=TIMESTAMP},
+      articleid = #{record.articleid,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      role = #{record.role,jdbcType=VARCHAR},
+      hasdelete = #{record.hasdelete,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qxc.blog.pojo.Blog">
+    update blog
+    <set>
+      <if test="articleid != null">
+        articleid = #{articleid,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="role != null">
+        role = #{role,jdbcType=VARCHAR},
+      </if>
+      <if test="hasdelete != null">
+        hasdelete = #{hasdelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where index = #{index,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+      and createdate = #{createdate,jdbcType=TIMESTAMP}
+      and changedate = #{changedate,jdbcType=TIMESTAMP}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qxc.blog.pojo.Blog">
+    update blog
+    set articleid = #{articleid,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      role = #{role,jdbcType=VARCHAR},
+      hasdelete = #{hasdelete,jdbcType=INTEGER}
+    where index = #{index,jdbcType=BIGINT}
+      and username = #{username,jdbcType=VARCHAR}
+      and createdate = #{createdate,jdbcType=TIMESTAMP}
+      and changedate = #{changedate,jdbcType=TIMESTAMP}
+  </update>
+</mapper>
