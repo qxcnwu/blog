@@ -1,0 +1,40 @@
+spring:
+  application:
+   name: blog
+  datasource:
+    username: root
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/blog?useUnicode=true&characterEncoding=utf-8&serverTimezone=GMT
+    driver-class-name: com.mysql.jdbc.Driver
+    hikari:
+      minimum-idle: 2
+      idle-timeout: 30000
+      maximum-pool-size: 5
+      max-lifetime: 120000
+      connection-timeout: 30000
+  data:
+    redis:
+      host: 127.0.0.1
+      port: 6379
+      jedis:
+        pool:
+          max-active: 8
+          # ????????????????????
+          max-wait: 800
+          # ???????????????????????
+          max-idle: 8
+          # ???????????
+          min-idle: 2
+          # ???????????
+    redisson:
+      file: classpath:redisson.yaml
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+server:
+  port: 8001

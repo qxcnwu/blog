@@ -19,4 +19,6 @@ import org.springframework.context.annotation.PropertySource;
 @Data
 public class BaseConfiguration {
     private String preUrl;
+    private String ipv4Url;
+    private String ipv6Url;
 }
