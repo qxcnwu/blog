@@ -5,6 +5,7 @@ import com.qxc.blog.dao.BlogUserMapper;
 import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.pojo.BlogUserExample;
 import com.qxc.blog.service.BlogUserService;
+import jakarta.annotation.Nullable;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -37,7 +38,7 @@ public class BlogUserServiceImpl implements BlogUserService {
      * @return
      */
     @Override
-    public BlogUser login(String username, String password) {
+    public @Nullable BlogUser login(String username, String password) {
         BlogUserExample blogUserExample = new BlogUserExample();
         blogUserExample.createCriteria().andNameEqualTo(username).andPwdEqualTo(password);
         final List<BlogUser> blogUsers = blogUserMapper.selectByExample(blogUserExample);

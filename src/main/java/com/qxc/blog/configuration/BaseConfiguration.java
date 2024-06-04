@@ -21,4 +21,6 @@ public class BaseConfiguration {
     private String preUrl;
     private String ipv4Url;
     private String ipv6Url;
+    private String jwtCreat;
+    private String cookieName;
 }

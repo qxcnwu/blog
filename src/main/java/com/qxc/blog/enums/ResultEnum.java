@@ -17,7 +17,9 @@ public enum ResultEnum {
     UPLOADIMAGEERROR("upload image error", 1),
     UPLOADATTACHMENTSUCCESS("upload attachment error", 0),
     UPLOADATTACHMENTERROR("upload attachment error", 1),
-    NEEDLOGINERROR("please login again", -1);
+    NEEDLOGINERROR("please login again", -1),
+    LOGINSUCCESS("login success", 0),
+    LOGINERROR("no such user", -1);
 
     private final String name;
     private final int code;

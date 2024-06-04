@@ -30,6 +30,11 @@ public class Result<T> {
         this.data = data;
     }
 
+    public void setResultEnum(@NotNull ResultEnum resultEnum) {
+        setErrno(resultEnum.getCode());
+        setMessage(resultEnum.getName());
+    }
+
     /**
      * 需要登录返回这个对象
      * @return
