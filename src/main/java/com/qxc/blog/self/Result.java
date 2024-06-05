@@ -1,6 +1,5 @@
 package com.qxc.blog.self;
 
-import com.qxc.blog.enums.ResultEnum;
 import lombok.Getter;
 import lombok.Setter;
 import org.jetbrains.annotations.Contract;

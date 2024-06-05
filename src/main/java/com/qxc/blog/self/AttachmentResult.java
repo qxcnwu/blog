@@ -1,6 +1,5 @@
 package com.qxc.blog.self;
 
-import com.qxc.blog.enums.ResultEnum;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.jetbrains.annotations.NotNull;

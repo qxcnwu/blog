@@ -56,6 +56,15 @@ public class RedisServerUtiles implements ApplicationListener<HotfixEvent> {
         redissonClient.getMapCache(redisConfiguration.getUserKey()).put(token, user, redisConfiguration.getExpireTime().get(redisConfiguration.getUserKey()), TimeUnit.SECONDS);
     }
 
+    /**
+     * 用户登出移除token
+     * @param token
+     * @return
+     */
+    public boolean removeUserByToken(String token) {
+        return !Objects.isNull(redissonClient.getMapCache(redisConfiguration.getUserKey()).remove(token));
+    }
+
 
     @Override
     public void onApplicationEvent(@NotNull HotfixEvent event) {

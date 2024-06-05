@@ -2,7 +2,7 @@ package com.qxc.blog.service.impl;
 
 import com.qxc.blog.configuration.BaseConfiguration;
 import com.qxc.blog.configuration.PathConfiguration;
-import com.qxc.blog.enums.ResultEnum;
+import com.qxc.blog.self.ResultEnum;
 import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.ImageResult;
 import com.qxc.blog.service.UploadFileServiceImpl;

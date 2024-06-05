@@ -1,10 +1,7 @@
 package com.qxc.blog.self;
 
-import com.qxc.blog.enums.ResultEnum;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;

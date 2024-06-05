@@ -1,6 +1,5 @@
 package com.qxc.blog.self;
 
-import com.qxc.blog.enums.ResultEnum;
 import com.qxc.blog.pojo.BlogUser;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

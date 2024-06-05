@@ -1,4 +1,4 @@
-package com.qxc.blog.enums;
+package com.qxc.blog.self;
 
 import lombok.Getter;
 import org.jetbrains.annotations.Contract;
@@ -19,7 +19,11 @@ public enum ResultEnum {
     UPLOADATTACHMENTERROR("upload attachment error", 1),
     NEEDLOGINERROR("please login again", -1),
     LOGINSUCCESS("login success", 0),
-    LOGINERROR("no such user", -1);
+    LOGINERROR("no such user", -1),
+    REGISTERSUCCESS("register success", 0),
+    REGISTERERROR("register user error", -1),
+    LOGOUTERROR("logout user error", -1),
+    LOGOUTSUCCESS("logout user success", 0);
 
     private final String name;
     private final int code;
