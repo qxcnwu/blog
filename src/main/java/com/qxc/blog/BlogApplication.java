@@ -18,7 +18,7 @@ public class BlogApplication {
     public static void main(String[] args) {
         final ConfigurableApplicationContext applicationContext = SpringApplication.run(BlogApplication.class, args);
         // 预热
-        applicationContext.getBean(HotfixEventPublisher.class).publishHotfixEvent(new HotfixEvent());
+        applicationContext.getBean(HotfixEventPublisher.class).publish(new HotfixEvent());
         log.info("application start finished!");
     }
 

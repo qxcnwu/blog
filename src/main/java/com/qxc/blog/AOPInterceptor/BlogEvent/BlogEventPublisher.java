@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.HotfixEvent;
+package com.qxc.blog.AOPInterceptor.BlogEvent;
 
 import com.qxc.blog.AOPInterceptor.PublishEvent;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * @PACKAGE com.qxc.blog.AOPInterceptor.HotfixEvent
  */
 @Component
-public class HotfixEventPublisher implements PublishEvent {
+public class BlogEventPublisher implements PublishEvent {
     @Resource
     private ApplicationContext applicationContext;
 
@@ -27,4 +27,6 @@ public class HotfixEventPublisher implements PublishEvent {
     public void publish(ApplicationEvent applicationEvent) {
         applicationContext.publishEvent(applicationEvent);
     }
+
+
 }
