@@ -1,6 +1,7 @@
 package com.qxc.blog.self;
 
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 /**
  * @Author qxc
@@ -8,7 +9,7 @@ import org.jetbrains.annotations.Contract;
  * @Version 1.0
  * @PACKAGE com.qxc.blog.self
  */
-public enum BlogRole {
+public enum BlogRoleEnum {
     WRITER("0", "ONLY WRITER"),
     TEAM("1", "ONLY TEAM PARTICIPANT"),
     USER("2", "ONLY LOGIN USER"),
@@ -18,7 +19,7 @@ public enum BlogRole {
     private final String description;
 
     @Contract(pure = true)
-    BlogRole(String code, String description) {
+    BlogRoleEnum(String code, String description) {
         this.code = code;
         this.description = description;
     }
@@ -31,5 +32,14 @@ public enum BlogRole {
     @Contract(pure = true)
     public String getDescription() {
         return description;
+    }
+
+    @Contract(pure = true)
+    @Override
+    public @NotNull String toString() {
+        return "BlogRole{" +
+                "code='" + code + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 }

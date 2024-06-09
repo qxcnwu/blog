@@ -10,7 +10,7 @@ public interface BlogUserMapper {
 
     int deleteByExample(BlogUserExample example);
 
-    int deleteByPrimaryKey(Long index);
+    int deleteByPrimaryKey(Long idx);
 
     int insert(BlogUser record);
 
@@ -18,7 +18,7 @@ public interface BlogUserMapper {
 
     List<BlogUser> selectByExample(BlogUserExample example);
 
-    BlogUser selectByPrimaryKey(Long index);
+    BlogUser selectByPrimaryKey(Long idx);
 
     int updateByExampleSelective(@Param("record") BlogUser record, @Param("example") BlogUserExample example);
 

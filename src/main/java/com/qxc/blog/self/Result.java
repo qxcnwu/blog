@@ -44,4 +44,13 @@ public class Result<T> {
         result.setErrno(ResultEnum.NEEDLOGINERROR.getCode());
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Result{" +
+                "errno=" + errno +
+                ", message='" + message + '\'' +
+                ", data=" + data +
+                '}';
+    }
 }

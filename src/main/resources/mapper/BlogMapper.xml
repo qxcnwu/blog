@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qxc.blog.dao.BlogMapper">
   <resultMap id="BaseResultMap" type="com.qxc.blog.pojo.Blog">
-    <id column="index" jdbcType="BIGINT" property="index" />
+    <id column="idx" jdbcType="BIGINT" property="idx" />
     <id column="username" jdbcType="VARCHAR" property="username" />
     <id column="createdate" jdbcType="TIMESTAMP" property="createdate" />
     <id column="changedate" jdbcType="TIMESTAMP" property="changedate" />
@@ -70,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    index, username, createdate, changedate, articleid, title, role, hasdelete
+    idx, username, createdate, changedate, articleid, title, role, hasdelete
   </sql>
   <select id="selectByExample" parameterType="com.qxc.blog.pojo.BlogExample" resultMap="BaseResultMap">
     select
@@ -90,14 +90,14 @@
     select 
     <include refid="Base_Column_List" />
     from blog
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and username = #{username,jdbcType=VARCHAR}
       and createdate = #{createdate,jdbcType=TIMESTAMP}
       and changedate = #{changedate,jdbcType=TIMESTAMP}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogKey">
     delete from blog
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and username = #{username,jdbcType=VARCHAR}
       and createdate = #{createdate,jdbcType=TIMESTAMP}
       and changedate = #{changedate,jdbcType=TIMESTAMP}
@@ -109,18 +109,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qxc.blog.pojo.Blog">
-    insert into blog (index, username, createdate, 
+    insert into blog (idx, username, createdate, 
       changedate, articleid, title, 
       role, hasdelete)
-    values (#{index,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
+    values (#{idx,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{createdate,jdbcType=TIMESTAMP}, 
       #{changedate,jdbcType=TIMESTAMP}, #{articleid,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
       #{role,jdbcType=VARCHAR}, #{hasdelete,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="com.qxc.blog.pojo.Blog">
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="index != null">
-        index,
+      <if test="idx != null">
+        idx,
       </if>
       <if test="username != null">
         username,
@@ -145,8 +145,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="index != null">
-        #{index,jdbcType=BIGINT},
+      <if test="idx != null">
+        #{idx,jdbcType=BIGINT},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -180,8 +180,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update blog
     <set>
-      <if test="record.index != null">
-        index = #{record.index,jdbcType=BIGINT},
+      <if test="record.idx != null">
+        idx = #{record.idx,jdbcType=BIGINT},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -211,7 +211,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update blog
-    set index = #{record.index,jdbcType=BIGINT},
+    set idx = #{record.idx,jdbcType=BIGINT},
       username = #{record.username,jdbcType=VARCHAR},
       createdate = #{record.createdate,jdbcType=TIMESTAMP},
       changedate = #{record.changedate,jdbcType=TIMESTAMP},
@@ -239,7 +239,7 @@
         hasdelete = #{hasdelete,jdbcType=INTEGER},
       </if>
     </set>
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and username = #{username,jdbcType=VARCHAR}
       and createdate = #{createdate,jdbcType=TIMESTAMP}
       and changedate = #{changedate,jdbcType=TIMESTAMP}
@@ -250,7 +250,7 @@
       title = #{title,jdbcType=VARCHAR},
       role = #{role,jdbcType=VARCHAR},
       hasdelete = #{hasdelete,jdbcType=INTEGER}
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and username = #{username,jdbcType=VARCHAR}
       and createdate = #{createdate,jdbcType=TIMESTAMP}
       and changedate = #{changedate,jdbcType=TIMESTAMP}

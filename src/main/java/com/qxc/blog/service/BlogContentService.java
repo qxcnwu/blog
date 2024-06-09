@@ -14,21 +14,21 @@ public interface BlogContentService {
      * @param blogContent
      * @return
      */
-    boolean addBlogContent(BlogContent blogContent);
+    boolean addBlogContent(BlogContent blogContent) throws Exception;
 
     /**
      * 更新内容
      * @param blogContent
      * @return
      */
-    boolean updateBlogContent(BlogContent blogContent);
+    boolean updateBlogContent(BlogContent blogContent) throws Exception;
 
     /**
      * 删除内容
      * @param blogContent
      * @return
      */
-    boolean deleteBlogContent(BlogContent blogContent);
+    boolean deleteBlogContent(BlogContent blogContent) throws Exception;
 
     /**
      * 更新
@@ -36,4 +36,11 @@ public interface BlogContentService {
      * @return
      */
     BlogContent getBlogContentById(String id);
+
+    /**
+     * 是否存在
+     * @param title
+     * @return
+     */
+    boolean containsBlogContents(String title);
 }

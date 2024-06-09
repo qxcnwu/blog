@@ -23,7 +23,9 @@ public enum ResultEnum {
     REGISTERSUCCESS("register success", 0),
     REGISTERERROR("register user error", -1),
     LOGOUTERROR("logout user error", -1),
-    LOGOUTSUCCESS("logout user success", 0);
+    LOGOUTSUCCESS("logout user success", 0),
+    BLOGEDITERROR("blog edit error", -1),
+    BLOGEDITSUCCESS("blog edit success", 0);
 
     private final String name;
     private final int code;

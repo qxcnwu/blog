@@ -3,9 +3,11 @@ package com.qxc.blog.self;
 import com.qxc.blog.pojo.Blog;
 import com.qxc.blog.pojo.BlogComments;
 import com.qxc.blog.pojo.BlogContent;
+import com.qxc.blog.pojo.BlogRelationship;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.jetbrains.annotations.Contract;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -26,25 +28,43 @@ public class BlogAndContent implements Serializable {
     private Blog blog;
     private BlogContent blogContent;
     private List<BlogComments> blogComments;
+    private List<BlogRelationship> blogRelationship;
+
+    @Contract(pure = true)
+    public BlogAndContent(Blog blog, BlogContent blogContent, List<BlogComments> blogComments) {
+        this.blog = blog;
+        this.blogContent = blogContent;
+        this.blogComments = blogComments;
+    }
 
     /**
      * 更新时间
      */
-    public void updateTime() {
+    public void updateChangeTime() {
         blog.setChangedate(new Date());
     }
 
     /**
      * 更新时间
      */
-    public void updateCreateTime() {
+    private void updateCreateTime() {
         blog.setCreatedate(new Date());
+    }
+
+    /**
+     * 初始化
+     */
+    public void setCreate() {
+        createId();
+        updateCreateTime();
+        updateChangeTime();
+        getBlog().setHasdelete(BlogDeleteEnum.CONTAINS.ordinal());
     }
 
     /**
      * 生成水机ID
      */
-    public void createId() {
+    private void createId() {
         blog.setArticleid(UUID.randomUUID().toString());
         if (Objects.isNull(blogContent)) {
             blogContent = new BlogContent();
@@ -53,4 +73,13 @@ public class BlogAndContent implements Serializable {
         blogContent.setArticleid(blog.getArticleid());
     }
 
+    @Override
+    public String toString() {
+        return "BlogAndContent{" +
+                "blog=" + blog +
+                ", blogContent=" + blogContent +
+                ", blogComments=" + blogComments +
+                ", blogRelationship=" + blogRelationship +
+                '}';
+    }
 }

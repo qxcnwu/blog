@@ -2,15 +2,14 @@ package com.qxc.blog.service.impl;
 
 import com.qxc.blog.AOPInterceptor.BlogEvent.BlogEvent;
 import com.qxc.blog.AOPInterceptor.BlogEvent.BlogEventPublisher;
+import com.qxc.blog.AOPInterceptor.LogRecod.LogRecord;
 import com.qxc.blog.pojo.Blog;
 import com.qxc.blog.pojo.BlogComments;
 import com.qxc.blog.pojo.BlogContent;
+import com.qxc.blog.pojo.BlogRelationship;
 import com.qxc.blog.self.BlogAndContent;
 import com.qxc.blog.self.BlogEventEnum;
-import com.qxc.blog.service.BlogCommentsService;
-import com.qxc.blog.service.BlogContentService;
-import com.qxc.blog.service.BlogService;
-import com.qxc.blog.service.EditBlogService;
+import com.qxc.blog.service.*;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,6 +39,9 @@ public class EditBlogServiceImpl implements EditBlogService {
     @Resource
     private BlogEventPublisher blogAddEventPublisher;
 
+    @Resource
+    private BlogRelationshipService blogRelationshipService;
+
     /**
      * 获取整个博客全部信息
      *
@@ -60,7 +62,11 @@ public class EditBlogServiceImpl implements EditBlogService {
         if (Objects.isNull(comments)) {
             return null;
         }
-        return new BlogAndContent(blog, content, comments);
+        final List<BlogRelationship> blogRelationShip = blogRelationshipService.getBlogRelationShip(articalId);
+        if (Objects.isNull(blogRelationShip)) {
+            return null;
+        }
+        return new BlogAndContent(blog, content, comments, blogRelationShip);
     }
 
     /**
@@ -71,12 +77,16 @@ public class EditBlogServiceImpl implements EditBlogService {
      */
     @Override
     @Transactional
+    @LogRecord(param = true, time = true)
     public boolean addBlog(@NotNull BlogAndContent blogAndContent) throws Exception {
         if (!blogService.addBlog(blogAndContent.getBlog())) {
             throw new Exception("add blog failed");
         }
         if (!blogContentService.addBlogContent(blogAndContent.getBlogContent())) {
             throw new Exception("add blog content failed");
+        }
+        if (!blogRelationshipService.addBlogRelationship(blogAndContent.getBlogRelationship().getFirst())) {
+            throw new Exception("add blog relationship failed");
         }
         // 发布事件els可能订阅
         blogAddEventPublisher.publish(new BlogEvent(blogAndContent.getBlog().getArticleid(), BlogEventEnum.CREATE));
@@ -91,6 +101,7 @@ public class EditBlogServiceImpl implements EditBlogService {
      */
     @Override
     @Transactional
+    @LogRecord(param = true, time = true)
     public boolean updateBlog(@NotNull BlogAndContent blogAndContent) throws Exception {
         if (!blogService.updateBlog(blogAndContent.getBlog())) {
             throw new Exception("add blog failed");
@@ -111,15 +122,18 @@ public class EditBlogServiceImpl implements EditBlogService {
      */
     @Override
     @Transactional
+    @LogRecord(param = true, time = true)
     public boolean deleteBlog(@NotNull BlogAndContent blogAndContent) throws Exception {
-        if (!blogService.deleteBlog(blogAndContent.getBlog())) {
-            throw new Exception("add blog failed");
+        final List<String> relationship = blogRelationshipService.deleteBlogRelationship(blogAndContent.getBlog().getArticleid());
+        if (!blogService.deleteBlog(blogAndContent.getBlog()) || !blogService.deleteBlog(relationship)) {
+            throw new Exception("delete blog failed");
         }
         if (!blogContentService.deleteBlogContent(blogAndContent.getBlogContent())) {
-            throw new Exception("add blog content failed");
+            throw new Exception("delete blog content failed");
         }
         // 发布事件els可能订阅
-        blogAddEventPublisher.publish(new BlogEvent(blogAndContent.getBlog().getArticleid(), BlogEventEnum.DELETE));
+        relationship.add(blogAndContent.getBlog().getArticleid());
+        blogAddEventPublisher.publish(new BlogEvent(relationship, BlogEventEnum.DELETE));
         return true;
     }
 }

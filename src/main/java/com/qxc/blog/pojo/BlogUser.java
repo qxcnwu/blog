@@ -3,7 +3,7 @@ package com.qxc.blog.pojo;
 import java.util.Date;
 
 public class BlogUser {
-    private Long index;
+    private Long idx;
 
     private String name;
 
@@ -15,12 +15,14 @@ public class BlogUser {
 
     private Date creattime;
 
-    public Long getIndex() {
-        return index;
+    private Integer role;
+
+    public Long getIdx() {
+        return idx;
     }
 
-    public void setIndex(Long index) {
-        this.index = index;
+    public void setIdx(Long idx) {
+        this.idx = idx;
     }
 
     public String getName() {
@@ -61,5 +63,13 @@ public class BlogUser {
 
     public void setCreattime(Date creattime) {
         this.creattime = creattime;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setRole(Integer role) {
+        this.role = role;
     }
 }

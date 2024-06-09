@@ -1,5 +1,7 @@
 package com.qxc.blog.self;
 
+import org.jetbrains.annotations.Contract;
+
 /**
  * @Author qxc
  * @Date 2024 2024/6/6 下午11:05
@@ -7,5 +9,17 @@ package com.qxc.blog.self;
  * @PACKAGE com.qxc.blog.self
  */
 public enum BlogEventEnum {
-    CREATE, UPDATE, DELETE;
+    CREATE(3), UPDATE(2), DELETE(4), SEE(1);
+
+    private final int opVal;
+
+    @Contract(pure = true)
+    BlogEventEnum(int opVal) {
+        this.opVal = opVal;
+    }
+
+    @Contract(pure = true)
+    public int getOpVal() {
+        return opVal;
+    }
 }

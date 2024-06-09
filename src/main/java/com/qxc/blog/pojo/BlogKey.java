@@ -3,7 +3,7 @@ package com.qxc.blog.pojo;
 import java.util.Date;
 
 public class BlogKey {
-    private Long index;
+    private Long idx;
 
     private String username;
 
@@ -11,12 +11,12 @@ public class BlogKey {
 
     private Date changedate;
 
-    public Long getIndex() {
-        return index;
+    public Long getIdx() {
+        return idx;
     }
 
-    public void setIndex(Long index) {
-        this.index = index;
+    public void setIdx(Long idx) {
+        this.idx = idx;
     }
 
     public String getUsername() {

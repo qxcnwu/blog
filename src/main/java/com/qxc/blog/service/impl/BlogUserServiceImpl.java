@@ -56,7 +56,7 @@ public class BlogUserServiceImpl implements BlogUserService {
      */
     @Override
     public boolean logout(String username) {
-        return false;
+        return true;
     }
 
     /**

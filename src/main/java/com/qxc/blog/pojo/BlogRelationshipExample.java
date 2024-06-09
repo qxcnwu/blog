@@ -3,14 +3,14 @@ package com.qxc.blog.pojo;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BlogRoleExample {
+public class BlogRelationshipExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public BlogRoleExample() {
+    public BlogRelationshipExample() {
         oredCriteria = new ArrayList<>();
     }
 
@@ -114,253 +114,263 @@ public class BlogRoleExample {
             return (Criteria) this;
         }
 
-        public Criteria andIdxEqualTo(Long value) {
+        public Criteria andIdxEqualTo(Integer value) {
             addCriterion("idx =", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxNotEqualTo(Long value) {
+        public Criteria andIdxNotEqualTo(Integer value) {
             addCriterion("idx <>", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxGreaterThan(Long value) {
+        public Criteria andIdxGreaterThan(Integer value) {
             addCriterion("idx >", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxGreaterThanOrEqualTo(Long value) {
+        public Criteria andIdxGreaterThanOrEqualTo(Integer value) {
             addCriterion("idx >=", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxLessThan(Long value) {
+        public Criteria andIdxLessThan(Integer value) {
             addCriterion("idx <", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxLessThanOrEqualTo(Long value) {
+        public Criteria andIdxLessThanOrEqualTo(Integer value) {
             addCriterion("idx <=", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxIn(List<Long> values) {
+        public Criteria andIdxIn(List<Integer> values) {
             addCriterion("idx in", values, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxNotIn(List<Long> values) {
+        public Criteria andIdxNotIn(List<Integer> values) {
             addCriterion("idx not in", values, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxBetween(Long value1, Long value2) {
+        public Criteria andIdxBetween(Integer value1, Integer value2) {
             addCriterion("idx between", value1, value2, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIdxNotBetween(Long value1, Long value2) {
+        public Criteria andIdxNotBetween(Integer value1, Integer value2) {
             addCriterion("idx not between", value1, value2, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidIsNull() {
-            addCriterion("articleid is null");
+        public Criteria andFatheridxIsNull() {
+            addCriterion("fatherIdx is null");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidIsNotNull() {
-            addCriterion("articleid is not null");
+        public Criteria andFatheridxIsNotNull() {
+            addCriterion("fatherIdx is not null");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidEqualTo(String value) {
-            addCriterion("articleid =", value, "articleid");
+        public Criteria andFatheridxEqualTo(String value) {
+            addCriterion("fatherIdx =", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidNotEqualTo(String value) {
-            addCriterion("articleid <>", value, "articleid");
+        public Criteria andFatheridxNotEqualTo(String value) {
+            addCriterion("fatherIdx <>", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidGreaterThan(String value) {
-            addCriterion("articleid >", value, "articleid");
+        public Criteria andFatheridxGreaterThan(String value) {
+            addCriterion("fatherIdx >", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidGreaterThanOrEqualTo(String value) {
-            addCriterion("articleid >=", value, "articleid");
+        public Criteria andFatheridxGreaterThanOrEqualTo(String value) {
+            addCriterion("fatherIdx >=", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidLessThan(String value) {
-            addCriterion("articleid <", value, "articleid");
+        public Criteria andFatheridxLessThan(String value) {
+            addCriterion("fatherIdx <", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidLessThanOrEqualTo(String value) {
-            addCriterion("articleid <=", value, "articleid");
+        public Criteria andFatheridxLessThanOrEqualTo(String value) {
+            addCriterion("fatherIdx <=", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidLike(String value) {
-            addCriterion("articleid like", value, "articleid");
+        public Criteria andFatheridxLike(String value) {
+            addCriterion("fatherIdx like", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidNotLike(String value) {
-            addCriterion("articleid not like", value, "articleid");
+        public Criteria andFatheridxNotLike(String value) {
+            addCriterion("fatherIdx not like", value, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidIn(List<String> values) {
-            addCriterion("articleid in", values, "articleid");
+        public Criteria andFatheridxIn(List<String> values) {
+            addCriterion("fatherIdx in", values, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidNotIn(List<String> values) {
-            addCriterion("articleid not in", values, "articleid");
+        public Criteria andFatheridxNotIn(List<String> values) {
+            addCriterion("fatherIdx not in", values, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidBetween(String value1, String value2) {
-            addCriterion("articleid between", value1, value2, "articleid");
+        public Criteria andFatheridxBetween(String value1, String value2) {
+            addCriterion("fatherIdx between", value1, value2, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andArticleidNotBetween(String value1, String value2) {
-            addCriterion("articleid not between", value1, value2, "articleid");
+        public Criteria andFatheridxNotBetween(String value1, String value2) {
+            addCriterion("fatherIdx not between", value1, value2, "fatheridx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameIsNull() {
-            addCriterion("allowedusername is null");
+        public Criteria andSonidxIsNull() {
+            addCriterion("sonIdx is null");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameIsNotNull() {
-            addCriterion("allowedusername is not null");
+        public Criteria andSonidxIsNotNull() {
+            addCriterion("sonIdx is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameEqualTo(String value) {
-            addCriterion("allowedusername =", value, "allowedusername");
+        public Criteria andSonidxEqualTo(String value) {
+            addCriterion("sonIdx =", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameNotEqualTo(String value) {
-            addCriterion("allowedusername <>", value, "allowedusername");
+        public Criteria andSonidxNotEqualTo(String value) {
+            addCriterion("sonIdx <>", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameGreaterThan(String value) {
-            addCriterion("allowedusername >", value, "allowedusername");
+        public Criteria andSonidxGreaterThan(String value) {
+            addCriterion("sonIdx >", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameGreaterThanOrEqualTo(String value) {
-            addCriterion("allowedusername >=", value, "allowedusername");
+        public Criteria andSonidxGreaterThanOrEqualTo(String value) {
+            addCriterion("sonIdx >=", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameLessThan(String value) {
-            addCriterion("allowedusername <", value, "allowedusername");
+        public Criteria andSonidxLessThan(String value) {
+            addCriterion("sonIdx <", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameLessThanOrEqualTo(String value) {
-            addCriterion("allowedusername <=", value, "allowedusername");
+        public Criteria andSonidxLessThanOrEqualTo(String value) {
+            addCriterion("sonIdx <=", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameLike(String value) {
-            addCriterion("allowedusername like", value, "allowedusername");
+        public Criteria andSonidxLike(String value) {
+            addCriterion("sonIdx like", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameNotLike(String value) {
-            addCriterion("allowedusername not like", value, "allowedusername");
+        public Criteria andSonidxNotLike(String value) {
+            addCriterion("sonIdx not like", value, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameIn(List<String> values) {
-            addCriterion("allowedusername in", values, "allowedusername");
+        public Criteria andSonidxIn(List<String> values) {
+            addCriterion("sonIdx in", values, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameNotIn(List<String> values) {
-            addCriterion("allowedusername not in", values, "allowedusername");
+        public Criteria andSonidxNotIn(List<String> values) {
+            addCriterion("sonIdx not in", values, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameBetween(String value1, String value2) {
-            addCriterion("allowedusername between", value1, value2, "allowedusername");
+        public Criteria andSonidxBetween(String value1, String value2) {
+            addCriterion("sonIdx between", value1, value2, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowedusernameNotBetween(String value1, String value2) {
-            addCriterion("allowedusername not between", value1, value2, "allowedusername");
+        public Criteria andSonidxNotBetween(String value1, String value2) {
+            addCriterion("sonIdx not between", value1, value2, "sonidx");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodIsNull() {
-            addCriterion("allowmethod is null");
+        public Criteria andTitleIsNull() {
+            addCriterion("title is null");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodIsNotNull() {
-            addCriterion("allowmethod is not null");
+        public Criteria andTitleIsNotNull() {
+            addCriterion("title is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodEqualTo(Integer value) {
-            addCriterion("allowmethod =", value, "allowmethod");
+        public Criteria andTitleEqualTo(String value) {
+            addCriterion("title =", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodNotEqualTo(Integer value) {
-            addCriterion("allowmethod <>", value, "allowmethod");
+        public Criteria andTitleNotEqualTo(String value) {
+            addCriterion("title <>", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodGreaterThan(Integer value) {
-            addCriterion("allowmethod >", value, "allowmethod");
+        public Criteria andTitleGreaterThan(String value) {
+            addCriterion("title >", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodGreaterThanOrEqualTo(Integer value) {
-            addCriterion("allowmethod >=", value, "allowmethod");
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
+            addCriterion("title >=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodLessThan(Integer value) {
-            addCriterion("allowmethod <", value, "allowmethod");
+        public Criteria andTitleLessThan(String value) {
+            addCriterion("title <", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodLessThanOrEqualTo(Integer value) {
-            addCriterion("allowmethod <=", value, "allowmethod");
+        public Criteria andTitleLessThanOrEqualTo(String value) {
+            addCriterion("title <=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodIn(List<Integer> values) {
-            addCriterion("allowmethod in", values, "allowmethod");
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodNotIn(List<Integer> values) {
-            addCriterion("allowmethod not in", values, "allowmethod");
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodBetween(Integer value1, Integer value2) {
-            addCriterion("allowmethod between", value1, value2, "allowmethod");
+        public Criteria andTitleIn(List<String> values) {
+            addCriterion("title in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andAllowmethodNotBetween(Integer value1, Integer value2) {
-            addCriterion("allowmethod not between", value1, value2, "allowmethod");
+        public Criteria andTitleNotIn(List<String> values) {
+            addCriterion("title not in", values, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleBetween(String value1, String value2) {
+            addCriterion("title between", value1, value2, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotBetween(String value1, String value2) {
+            addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
     }

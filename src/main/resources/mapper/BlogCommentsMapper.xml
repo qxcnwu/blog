@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.qxc.blog.dao.BlogCommentsMapper">
   <resultMap id="BaseResultMap" type="com.qxc.blog.pojo.BlogComments">
-    <id column="index" jdbcType="BIGINT" property="index" />
+    <id column="idx" jdbcType="BIGINT" property="idx" />
     <id column="articleid" jdbcType="VARCHAR" property="articleid" />
     <id column="createtime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="username" jdbcType="VARCHAR" property="username" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    index, articleid, createtime, username, commentsid, hasdelete
+    idx, articleid, createtime, username, commentsid, hasdelete
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -112,13 +112,13 @@
     ,
     <include refid="Blob_Column_List" />
     from blogcomments
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and articleid = #{articleid,jdbcType=VARCHAR}
       and createtime = #{createtime,jdbcType=TIMESTAMP}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogCommentsKey">
     delete from blogcomments
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and articleid = #{articleid,jdbcType=VARCHAR}
       and createtime = #{createtime,jdbcType=TIMESTAMP}
   </delete>
@@ -129,18 +129,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qxc.blog.pojo.BlogComments">
-    insert into blogcomments (index, articleid, createtime, 
+    insert into blogcomments (idx, articleid, createtime, 
       username, commentsid, hasdelete, 
       content)
-    values (#{index,jdbcType=BIGINT}, #{articleid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
+    values (#{idx,jdbcType=BIGINT}, #{articleid,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
       #{username,jdbcType=VARCHAR}, #{commentsid,jdbcType=INTEGER}, #{hasdelete,jdbcType=INTEGER}, 
       #{content,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.qxc.blog.pojo.BlogComments">
     insert into blogcomments
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="index != null">
-        index,
+      <if test="idx != null">
+        idx,
       </if>
       <if test="articleid != null">
         articleid,
@@ -162,8 +162,8 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="index != null">
-        #{index,jdbcType=BIGINT},
+      <if test="idx != null">
+        #{idx,jdbcType=BIGINT},
       </if>
       <if test="articleid != null">
         #{articleid,jdbcType=VARCHAR},
@@ -194,8 +194,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update blogcomments
     <set>
-      <if test="record.index != null">
-        index = #{record.index,jdbcType=BIGINT},
+      <if test="record.idx != null">
+        idx = #{record.idx,jdbcType=BIGINT},
       </if>
       <if test="record.articleid != null">
         articleid = #{record.articleid,jdbcType=VARCHAR},
@@ -222,7 +222,7 @@
   </update>
   <update id="updateByExampleWithBLOBs" parameterType="map">
     update blogcomments
-    set index = #{record.index,jdbcType=BIGINT},
+    set idx = #{record.idx,jdbcType=BIGINT},
       articleid = #{record.articleid,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       username = #{record.username,jdbcType=VARCHAR},
@@ -235,7 +235,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update blogcomments
-    set index = #{record.index,jdbcType=BIGINT},
+    set idx = #{record.idx,jdbcType=BIGINT},
       articleid = #{record.articleid,jdbcType=VARCHAR},
       createtime = #{record.createtime,jdbcType=TIMESTAMP},
       username = #{record.username,jdbcType=VARCHAR},
@@ -261,7 +261,7 @@
         content = #{content,jdbcType=LONGVARCHAR},
       </if>
     </set>
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and articleid = #{articleid,jdbcType=VARCHAR}
       and createtime = #{createtime,jdbcType=TIMESTAMP}
   </update>
@@ -271,7 +271,7 @@
       commentsid = #{commentsid,jdbcType=INTEGER},
       hasdelete = #{hasdelete,jdbcType=INTEGER},
       content = #{content,jdbcType=LONGVARCHAR}
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and articleid = #{articleid,jdbcType=VARCHAR}
       and createtime = #{createtime,jdbcType=TIMESTAMP}
   </update>
@@ -280,7 +280,7 @@
     set username = #{username,jdbcType=VARCHAR},
       commentsid = #{commentsid,jdbcType=INTEGER},
       hasdelete = #{hasdelete,jdbcType=INTEGER}
-    where index = #{index,jdbcType=BIGINT}
+    where idx = #{idx,jdbcType=BIGINT}
       and articleid = #{articleid,jdbcType=VARCHAR}
       and createtime = #{createtime,jdbcType=TIMESTAMP}
   </update>

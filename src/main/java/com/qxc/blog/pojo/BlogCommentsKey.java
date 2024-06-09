@@ -3,18 +3,18 @@ package com.qxc.blog.pojo;
 import java.util.Date;
 
 public class BlogCommentsKey {
-    private Long index;
+    private Long idx;
 
     private String articleid;
 
     private Date createtime;
 
-    public Long getIndex() {
-        return index;
+    public Long getIdx() {
+        return idx;
     }
 
-    public void setIndex(Long index) {
-        this.index = index;
+    public void setIdx(Long idx) {
+        this.idx = idx;
     }
 
     public String getArticleid() {

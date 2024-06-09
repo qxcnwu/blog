@@ -36,4 +36,6 @@ public class AttachmentResult extends Result<HashMap<String, String>> {
     public void setHref(String href) {
         getData().put("href", href);
     }
+
+
 }

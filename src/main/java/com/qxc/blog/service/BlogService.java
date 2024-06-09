@@ -2,6 +2,8 @@ package com.qxc.blog.service;
 
 import com.qxc.blog.pojo.Blog;
 
+import java.util.List;
+
 /**
  * @Author qxc
  * @Date 2024 2024/6/6 下午9:53
@@ -32,6 +34,14 @@ public interface BlogService {
      * @return
      */
     boolean deleteBlog(Blog blog) throws Exception;
+
+    /**
+     * 批量删除
+     * @param ids
+     * @return
+     * @throws Exception
+     */
+    boolean deleteBlog(List<String> ids) throws Exception;
 
     /**
      * 是否存在

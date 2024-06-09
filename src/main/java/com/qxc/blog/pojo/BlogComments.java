@@ -1,8 +1,6 @@
 package com.qxc.blog.pojo;
 
-import java.io.Serializable;
-
-public class BlogComments extends BlogCommentsKey implements Serializable {
+public class BlogComments extends BlogCommentsKey {
     private String username;
 
     private Integer commentsid;

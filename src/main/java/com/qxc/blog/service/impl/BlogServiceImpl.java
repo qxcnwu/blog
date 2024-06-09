@@ -1,14 +1,18 @@
 package com.qxc.blog.service.impl;
 
+import com.qxc.blog.AOPInterceptor.LogRecod.LogRecord;
 import com.qxc.blog.dao.BlogMapper;
 import com.qxc.blog.pojo.Blog;
 import com.qxc.blog.pojo.BlogExample;
+import com.qxc.blog.self.BlogDeleteEnum;
 import com.qxc.blog.service.BlogService;
 import jakarta.annotation.Nullable;
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @Author qxc
@@ -19,7 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class BlogServiceImpl implements BlogService {
 
-    @Autowired
+    @Resource
     private BlogMapper blogMapper;
 
     /**
@@ -30,11 +34,12 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     @Transactional
+    @LogRecord
     public boolean addBlog(Blog blog) throws Exception {
         if (contentsBlog(blog)) {
             throw new Exception("contains blog id");
         }
-        return blogMapper.insertSelective(blog) == 1;
+        return blogMapper.insert(blog) == 1;
     }
 
     /**
@@ -45,6 +50,7 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     @Transactional
+    @LogRecord
     public boolean updateBlog(Blog blog) throws Exception {
         if (!contentsBlog(blog)) {
             throw new Exception("contains blog id");
@@ -62,6 +68,7 @@ public class BlogServiceImpl implements BlogService {
      */
     @Override
     @Transactional
+    @LogRecord
     public boolean deleteBlog(Blog blog) throws Exception {
         if (!contentsBlog(blog)) {
             throw new Exception("blog not exist");
@@ -72,16 +79,36 @@ public class BlogServiceImpl implements BlogService {
     }
 
     /**
+     * 批量删除
+     *
+     * @param ids
+     * @return
+     * @throws Exception
+     */
+    @Override
+    @Transactional
+    @LogRecord
+    public boolean deleteBlog(List<String> ids) throws Exception {
+        BlogExample example = new BlogExample();
+        example.createCriteria().andArticleidIn(ids);
+        if (blogMapper.deleteByExample(example) != ids.size()) {
+            throw new Exception("delete blogs fail");
+        }
+        return true;
+    }
+
+    /**
      * 是否存在
      *
      * @param blog
      * @return
      */
     @Override
+    @LogRecord
     public boolean contentsBlog(@NotNull Blog blog) {
         BlogExample blogExample = new BlogExample();
         blogExample.createCriteria().andArticleidEqualTo(blog.getArticleid());
-        return blogMapper.selectByExample(blogExample).isEmpty();
+        return !blogMapper.selectByExample(blogExample).isEmpty();
     }
 
     /**
@@ -91,9 +118,10 @@ public class BlogServiceImpl implements BlogService {
      * @return
      */
     @Override
+    @LogRecord
     public @Nullable Blog getBlogById(String id) {
         BlogExample example = new BlogExample();
-        example.createCriteria().andArticleidEqualTo(id);
+        example.createCriteria().andArticleidEqualTo(id).andHasdeleteEqualTo(BlogDeleteEnum.CONTAINS.ordinal());
         return blogMapper.selectByExample(example).stream().findFirst().orElse(null);
     }
 }

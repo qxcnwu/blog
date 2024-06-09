@@ -1,8 +1,6 @@
 package com.qxc.blog.pojo;
 
-import java.io.Serializable;
-
-public class BlogContent extends BlogContentKey implements Serializable {
+public class BlogContent extends BlogContentKey {
     private String title;
 
     public String getTitle() {

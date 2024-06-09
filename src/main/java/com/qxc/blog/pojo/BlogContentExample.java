@@ -104,63 +104,63 @@ public class BlogContentExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIndexIsNull() {
-            addCriterion("index is null");
+        public Criteria andIdxIsNull() {
+            addCriterion("idx is null");
             return (Criteria) this;
         }
 
-        public Criteria andIndexIsNotNull() {
-            addCriterion("index is not null");
+        public Criteria andIdxIsNotNull() {
+            addCriterion("idx is not null");
             return (Criteria) this;
         }
 
-        public Criteria andIndexEqualTo(Long value) {
-            addCriterion("index =", value, "index");
+        public Criteria andIdxEqualTo(Long value) {
+            addCriterion("idx =", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexNotEqualTo(Long value) {
-            addCriterion("index <>", value, "index");
+        public Criteria andIdxNotEqualTo(Long value) {
+            addCriterion("idx <>", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexGreaterThan(Long value) {
-            addCriterion("index >", value, "index");
+        public Criteria andIdxGreaterThan(Long value) {
+            addCriterion("idx >", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexGreaterThanOrEqualTo(Long value) {
-            addCriterion("index >=", value, "index");
+        public Criteria andIdxGreaterThanOrEqualTo(Long value) {
+            addCriterion("idx >=", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexLessThan(Long value) {
-            addCriterion("index <", value, "index");
+        public Criteria andIdxLessThan(Long value) {
+            addCriterion("idx <", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexLessThanOrEqualTo(Long value) {
-            addCriterion("index <=", value, "index");
+        public Criteria andIdxLessThanOrEqualTo(Long value) {
+            addCriterion("idx <=", value, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexIn(List<Long> values) {
-            addCriterion("index in", values, "index");
+        public Criteria andIdxIn(List<Long> values) {
+            addCriterion("idx in", values, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexNotIn(List<Long> values) {
-            addCriterion("index not in", values, "index");
+        public Criteria andIdxNotIn(List<Long> values) {
+            addCriterion("idx not in", values, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexBetween(Long value1, Long value2) {
-            addCriterion("index between", value1, value2, "index");
+        public Criteria andIdxBetween(Long value1, Long value2) {
+            addCriterion("idx between", value1, value2, "idx");
             return (Criteria) this;
         }
 
-        public Criteria andIndexNotBetween(Long value1, Long value2) {
-            addCriterion("index not between", value1, value2, "index");
+        public Criteria andIdxNotBetween(Long value1, Long value2) {
+            addCriterion("idx not between", value1, value2, "idx");
             return (Criteria) this;
         }
 

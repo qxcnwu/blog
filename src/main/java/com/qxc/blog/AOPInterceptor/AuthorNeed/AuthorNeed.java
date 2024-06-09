@@ -1,9 +1,6 @@
 package com.qxc.blog.AOPInterceptor.AuthorNeed;
 
-import java.lang.annotation.Documented;
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Inherited;
-import java.lang.annotation.Target;
+import java.lang.annotation.*;
 
 /**
  * @Author qxc
@@ -14,6 +11,7 @@ import java.lang.annotation.Target;
 @Inherited
 @Documented
 @Target({ElementType.METHOD})
+@Retention(RetentionPolicy.RUNTIME)
 public @interface AuthorNeed {
     boolean value() default true;
 }

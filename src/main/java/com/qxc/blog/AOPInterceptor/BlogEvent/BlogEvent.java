@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.context.ApplicationEvent;
 
 import java.time.Clock;
+import java.util.List;
 
 /**
  * @Author qxc
@@ -15,10 +16,14 @@ import java.time.Clock;
 @Getter
 public class BlogEvent extends ApplicationEvent {
 
-    private String articleId;
+    private List<String> articleId;
     private BlogEventEnum eventType;
 
     public BlogEvent(String articleId, BlogEventEnum eventType) {
+        this(List.of(new String[]{articleId}), eventType);
+    }
+
+    public BlogEvent(List<String> articleId, BlogEventEnum eventType) {
         super(new Object());
         this.articleId = articleId;
         this.eventType = eventType;

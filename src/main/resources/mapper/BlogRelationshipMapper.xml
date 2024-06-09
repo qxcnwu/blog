@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qxc.blog.dao.BlogContentMapper">
-  <resultMap id="BaseResultMap" type="com.qxc.blog.pojo.BlogContent">
-    <id column="idx" jdbcType="BIGINT" property="idx" />
-    <id column="articleid" jdbcType="VARCHAR" property="articleid" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.qxc.blog.pojo.BlogContent">
-    <result column="title" jdbcType="LONGVARCHAR" property="title" />
+<mapper namespace="com.qxc.blog.dao.BlogRelationshipMapper">
+  <resultMap id="BaseResultMap" type="com.qxc.blog.pojo.BlogRelationship">
+    <id column="idx" jdbcType="INTEGER" property="idx" />
+    <id column="fatherIdx" jdbcType="VARCHAR" property="fatheridx" />
+    <result column="sonIdx" jdbcType="VARCHAR" property="sonidx" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,20 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    idx, articleid
+    idx, fatherIdx, sonIdx, title
   </sql>
-  <sql id="Blob_Column_List">
-    title
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.qxc.blog.pojo.BlogContentExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExample" parameterType="com.qxc.blog.pojo.BlogRelationshipExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from blogcontent
+    from blogrelationship
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,54 +82,41 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.qxc.blog.pojo.BlogContentExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from blogcontent
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogContentKey" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogRelationshipKey" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from blogcontent
-    where idx = #{idx,jdbcType=BIGINT}
-      and articleid = #{articleid,jdbcType=VARCHAR}
+    from blogrelationship
+    where idx = #{idx,jdbcType=INTEGER}
+      and fatherIdx = #{fatheridx,jdbcType=VARCHAR}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogContentKey">
-    delete from blogcontent
-    where idx = #{idx,jdbcType=BIGINT}
-      and articleid = #{articleid,jdbcType=VARCHAR}
+  <delete id="deleteByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogRelationshipKey">
+    delete from blogrelationship
+    where idx = #{idx,jdbcType=INTEGER}
+      and fatherIdx = #{fatheridx,jdbcType=VARCHAR}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qxc.blog.pojo.BlogContentExample">
-    delete from blogcontent
+  <delete id="deleteByExample" parameterType="com.qxc.blog.pojo.BlogRelationshipExample">
+    delete from blogrelationship
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qxc.blog.pojo.BlogContent">
-    insert into blogcontent (idx, articleid, title
-      )
-    values (#{idx,jdbcType=BIGINT}, #{articleid,jdbcType=VARCHAR}, #{title,jdbcType=LONGVARCHAR}
-      )
+  <insert id="insert" parameterType="com.qxc.blog.pojo.BlogRelationship">
+    insert into blogrelationship (idx, fatherIdx, sonIdx, 
+      title)
+    values (#{idx,jdbcType=INTEGER}, #{fatheridx,jdbcType=VARCHAR}, #{sonidx,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.qxc.blog.pojo.BlogContent">
-    insert into blogcontent
+  <insert id="insertSelective" parameterType="com.qxc.blog.pojo.BlogRelationship">
+    insert into blogrelationship
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="idx != null">
         idx,
       </if>
-      <if test="articleid != null">
-        articleid,
+      <if test="fatheridx != null">
+        fatherIdx,
+      </if>
+      <if test="sonidx != null">
+        sonIdx,
       </if>
       <if test="title != null">
         title,
@@ -143,70 +124,73 @@
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="idx != null">
-        #{idx,jdbcType=BIGINT},
+        #{idx,jdbcType=INTEGER},
       </if>
-      <if test="articleid != null">
-        #{articleid,jdbcType=VARCHAR},
+      <if test="fatheridx != null">
+        #{fatheridx,jdbcType=VARCHAR},
+      </if>
+      <if test="sonidx != null">
+        #{sonidx,jdbcType=VARCHAR},
       </if>
       <if test="title != null">
-        #{title,jdbcType=LONGVARCHAR},
+        #{title,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.qxc.blog.pojo.BlogContentExample" resultType="java.lang.Long">
-    select count(*) from blogcontent
+  <select id="countByExample" parameterType="com.qxc.blog.pojo.BlogRelationshipExample" resultType="java.lang.Long">
+    select count(*) from blogrelationship
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update blogcontent
+    update blogrelationship
     <set>
       <if test="record.idx != null">
-        idx = #{record.idx,jdbcType=BIGINT},
+        idx = #{record.idx,jdbcType=INTEGER},
       </if>
-      <if test="record.articleid != null">
-        articleid = #{record.articleid,jdbcType=VARCHAR},
+      <if test="record.fatheridx != null">
+        fatherIdx = #{record.fatheridx,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sonidx != null">
+        sonIdx = #{record.sonidx,jdbcType=VARCHAR},
       </if>
       <if test="record.title != null">
-        title = #{record.title,jdbcType=LONGVARCHAR},
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update blogcontent
-    set idx = #{record.idx,jdbcType=BIGINT},
-      articleid = #{record.articleid,jdbcType=VARCHAR},
-      title = #{record.title,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update blogcontent
-    set idx = #{record.idx,jdbcType=BIGINT},
-      articleid = #{record.articleid,jdbcType=VARCHAR}
+    update blogrelationship
+    set idx = #{record.idx,jdbcType=INTEGER},
+      fatherIdx = #{record.fatheridx,jdbcType=VARCHAR},
+      sonIdx = #{record.sonidx,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qxc.blog.pojo.BlogContent">
-    update blogcontent
+  <update id="updateByPrimaryKeySelective" parameterType="com.qxc.blog.pojo.BlogRelationship">
+    update blogrelationship
     <set>
+      <if test="sonidx != null">
+        sonIdx = #{sonidx,jdbcType=VARCHAR},
+      </if>
       <if test="title != null">
-        title = #{title,jdbcType=LONGVARCHAR},
+        title = #{title,jdbcType=VARCHAR},
       </if>
     </set>
-    where idx = #{idx,jdbcType=BIGINT}
-      and articleid = #{articleid,jdbcType=VARCHAR}
+    where idx = #{idx,jdbcType=INTEGER}
+      and fatherIdx = #{fatheridx,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.qxc.blog.pojo.BlogContent">
-    update blogcontent
-    set title = #{title,jdbcType=LONGVARCHAR}
-    where idx = #{idx,jdbcType=BIGINT}
-      and articleid = #{articleid,jdbcType=VARCHAR}
+  <update id="updateByPrimaryKey" parameterType="com.qxc.blog.pojo.BlogRelationship">
+    update blogrelationship
+    set sonIdx = #{sonidx,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR}
+    where idx = #{idx,jdbcType=INTEGER}
+      and fatherIdx = #{fatheridx,jdbcType=VARCHAR}
   </update>
 </mapper>
