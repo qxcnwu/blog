@@ -10,22 +10,22 @@ import org.jetbrains.annotations.NotNull;
  * @PACKAGE com.qxc.blog.self
  */
 public enum BlogRoleEnum {
-    WRITER("0", "ONLY WRITER"),
-    TEAM("1", "ONLY TEAM PARTICIPANT"),
-    USER("2", "ONLY LOGIN USER"),
-    EVERYONE("3", "EVERYONE");
+    WRITER(0, "ONLY WRITER"),
+    TEAM(1, "ONLY TEAM PARTICIPANT"),
+    USER(2, "ONLY LOGIN USER"),
+    EVERYONE(3, "EVERYONE");
 
-    private final String code;
+    private final int code;
     private final String description;
 
     @Contract(pure = true)
-    BlogRoleEnum(String code, String description) {
+    BlogRoleEnum(int code, String description) {
         this.code = code;
         this.description = description;
     }
 
     @Contract(pure = true)
-    public String getCode() {
+    public int getCode() {
         return code;
     }
 

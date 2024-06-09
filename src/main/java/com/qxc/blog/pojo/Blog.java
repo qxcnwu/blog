@@ -5,7 +5,7 @@ public class Blog extends BlogKey {
 
     private String title;
 
-    private String role;
+    private Integer role;
 
     private Integer hasdelete;
 
@@ -25,12 +25,12 @@ public class Blog extends BlogKey {
         this.title = title == null ? null : title.trim();
     }
 
-    public String getRole() {
+    public Integer getRole() {
         return role;
     }
 
-    public void setRole(String role) {
-        this.role = role == null ? null : role.trim();
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public Integer getHasdelete() {
