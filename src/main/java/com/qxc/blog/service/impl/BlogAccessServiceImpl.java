@@ -54,13 +54,4 @@ public class BlogAccessServiceImpl implements BlogAccessService {
         blogRole.setArticleid(articalId);
         return blogRoleService.checkBlogRole(blogRole, blogEventEnum);
     }
-
-    /**
-     * 额外的获取博客判断
-     *
-     * @return
-     */
-    private boolean isReadCheck() {
-
-    }
 }
