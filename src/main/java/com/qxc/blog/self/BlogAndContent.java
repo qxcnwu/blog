@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -65,12 +66,38 @@ public class BlogAndContent implements Serializable {
      * 生成水机ID
      */
     private void createId() {
+        if (Objects.isNull(blog)) {
+            blog = new Blog();
+        }
         blog.setArticleid(UUID.randomUUID().toString());
         if (Objects.isNull(blogContent)) {
             blogContent = new BlogContent();
             blogContent.setTitle(blog.getTitle());
         }
         blogContent.setArticleid(blog.getArticleid());
+    }
+
+    /**
+     * 创建默认空间
+     *
+     * @param username
+     * @return
+     */
+    @Contract(pure = true)
+    public static @NotNull BlogAndContent initUser(String username, String titleName, String base) {
+        BlogAndContent blogAndContent = new BlogAndContent();
+        blogAndContent.setBlog(new Blog());
+        blogAndContent.setCreate();
+        blogAndContent.getBlog().setTitle(titleName);
+        blogAndContent.getBlog().setRole(1);
+        blogAndContent.getBlog().setUsername(username);
+        blogAndContent.getBlogContent().setTitle(titleName);
+        BlogRelationship blogRelationship = new BlogRelationship();
+        blogRelationship.setTitle(titleName);
+        blogRelationship.setFatheridx(base);
+        blogRelationship.setSonidx(blogAndContent.getBlog().getArticleid());
+        blogAndContent.setBlogRelationship(List.of(blogRelationship));
+        return blogAndContent;
     }
 
     @Override

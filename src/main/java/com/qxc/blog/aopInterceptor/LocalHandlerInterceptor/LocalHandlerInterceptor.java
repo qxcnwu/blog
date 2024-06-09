@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor;
+package com.qxc.blog.aopInterceptor.LocalHandlerInterceptor;
 
 import com.qxc.blog.configuration.BaseConfiguration;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +17,7 @@ import java.util.Objects;
  * @Author qxc
  * @Date 2024 2024/6/3 下午10:56
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor
+ * @PACKAGE com.qxc.blog.aopInterceptor.LocalHandlerInterceptor
  */
 @Component
 @Slf4j

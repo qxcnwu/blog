@@ -32,4 +32,13 @@ public class BlogCommentsKey {
     public void setCreatetime(Date createtime) {
         this.createtime = createtime;
     }
+
+    @Override
+    public String toString() {
+        return "BlogCommentsKey{" +
+                "idx=" + idx +
+                ", articleid='" + articleid + '\'' +
+                ", createtime=" + createtime +
+                '}';
+    }
 }

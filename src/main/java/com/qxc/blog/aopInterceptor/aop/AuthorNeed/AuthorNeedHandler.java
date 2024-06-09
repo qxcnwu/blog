@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.AuthorNeed;
+package com.qxc.blog.aopInterceptor.aop.AuthorNeed;
 
 import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.Result;
@@ -8,6 +8,7 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +19,7 @@ import java.util.Objects;
  * @Author qxc
  * @Date 2024 2024/6/2 下午8:16
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.AuthorNeed
+ * @PACKAGE com.qxc.blog.aopInterceptor.AuthorNeed
  */
 @Aspect
 @Component
@@ -28,7 +29,7 @@ public class AuthorNeedHandler {
     @Resource
     private RedisServerUtiles redisServerUtiles;
 
-    @Pointcut("@annotation(com.qxc.blog.AOPInterceptor.AuthorNeed.AuthorNeed)&&args(String,..,com.qxc.blog.pojo.BlogUser)")
+    @Pointcut("@annotation(com.qxc.blog.aopInterceptor.aop.AuthorNeed.AuthorNeed)&&args(String,..,com.qxc.blog.pojo.BlogUser)")
     public void authorNeed() {
     }
 
@@ -39,7 +40,8 @@ public class AuthorNeedHandler {
         final BlogUser blogUser = redisServerUtiles.getUserByToken(token);
         if (Objects.isNull(blogUser)) {
             log.error("Please login first!");
-            return Result.needLoginResult();
+            final Class<?> aClass = ((MethodSignature) joinPoint.getSignature()).getReturnType();
+            return Result.needLoginResult(aClass);
         }
         args[args.length - 1] = blogUser;
         return joinPoint.proceed(args);

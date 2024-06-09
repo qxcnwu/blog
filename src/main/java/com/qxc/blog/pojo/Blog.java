@@ -40,4 +40,14 @@ public class Blog extends BlogKey {
     public void setHasdelete(Integer hasdelete) {
         this.hasdelete = hasdelete;
     }
+
+    @Override
+    public String toString() {
+        return "Blog{" +
+                "articleid='" + articleid + '\'' +
+                ", title='" + title + '\'' +
+                ", role=" + role +
+                ", hasdelete=" + hasdelete +
+                '}';
+    }
 }

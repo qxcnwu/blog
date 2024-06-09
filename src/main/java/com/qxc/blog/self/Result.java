@@ -2,8 +2,11 @@ package com.qxc.blog.self;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.SneakyThrows;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+
+import java.lang.reflect.Constructor;
 
 /**
  * @Author qxc
@@ -36,13 +39,16 @@ public class Result<T> {
 
     /**
      * 需要登录返回这个对象
+     *
      * @return
      */
-    public static @NotNull Result<Object> needLoginResult() {
-        Result<Object> result = new Result<>();
-        result.setMessage(ResultEnum.NEEDLOGINERROR.getName());
-        result.setErrno(ResultEnum.NEEDLOGINERROR.getCode());
-        return result;
+    @SneakyThrows
+    public static @NotNull <T extends Result<Object>> T needLoginResult(@NotNull Class<?> tClass) {
+        final Constructor<T> declaredConstructor = (Constructor<T>) tClass.getDeclaredConstructor();
+        final T t = declaredConstructor.newInstance();
+        t.setErrno(ResultEnum.NEEDLOGINERROR.getCode());
+        t.setMessage(ResultEnum.NEEDLOGINERROR.getName());
+        return t;
     }
 
     @Override

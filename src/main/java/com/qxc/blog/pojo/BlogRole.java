@@ -1,5 +1,7 @@
 package com.qxc.blog.pojo;
 
+import com.qxc.blog.self.BlogAndContent;
+
 public class BlogRole extends BlogRoleKey {
     private String allowedusername;
 
@@ -19,5 +21,21 @@ public class BlogRole extends BlogRoleKey {
 
     public void setAllowmethod(Integer allowmethod) {
         this.allowmethod = allowmethod;
+    }
+
+    public static BlogRole initBlogRole(BlogAndContent blogAndContent,BlogUser blogUser){
+        BlogRole blogRole = new BlogRole();
+        blogRole.setArticleid(blogAndContent.getBlog().getArticleid());
+        blogRole.setAllowedusername(blogUser.getName());
+        blogRole.setAllowmethod(4);
+        return blogRole;
+    }
+
+    @Override
+    public String toString() {
+        return "BlogRole{" +
+                "allowedusername='" + allowedusername + '\'' +
+                ", allowmethod=" + allowmethod +
+                '}';
     }
 }

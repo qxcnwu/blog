@@ -1,6 +1,5 @@
 package com.qxc.blog.service;
 
-import com.qxc.blog.AOPInterceptor.BlogEvent.BlogEvent;
 import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.BlogEventEnum;
 
@@ -13,10 +12,16 @@ import com.qxc.blog.self.BlogEventEnum;
 public interface BlogAccessService {
     /**
      * 验证操作是否满足权限
+     *
      * @param blogUser
      * @param blogEvent
      * @param articalId
      * @return
      */
     boolean checkRole(BlogUser blogUser, BlogEventEnum blogEventEnum, String articalId);
+
+    boolean checkSee(BlogUser blogUser, String articalId);
+    boolean checkDelete(BlogUser blogUser, String articalId);
+    boolean checkUpdate(BlogUser blogUser, String articalId);
+    boolean checkAdd(BlogUser blogUser, String articalId);
 }

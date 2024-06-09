@@ -20,4 +20,12 @@ public class BlogRelationshipKey {
     public void setFatheridx(String fatheridx) {
         this.fatheridx = fatheridx == null ? null : fatheridx.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BlogRelationshipKey{" +
+                "idx=" + idx +
+                ", fatheridx='" + fatheridx + '\'' +
+                '}';
+    }
 }

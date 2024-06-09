@@ -20,4 +20,12 @@ public class BlogRelationship extends BlogRelationshipKey {
     public void setTitle(String title) {
         this.title = title == null ? null : title.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BlogRelationship{" +
+                "sonidx='" + sonidx + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
 }

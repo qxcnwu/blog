@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.LogRecod;
+package com.qxc.blog.aopInterceptor.aop.LogRecod;
 
 import java.lang.annotation.*;
 
@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * @Author qxc
  * @Date 2024 2024/6/8 下午2:59
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.LogRecod
+ * @PACKAGE com.qxc.blog.aopInterceptor.LogRecod
  */
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.METHOD)

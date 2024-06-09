@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor;
+package com.qxc.blog.aopInterceptor.LocalHandlerInterceptor;
 
 import java.lang.annotation.*;
 
@@ -6,7 +6,7 @@ import java.lang.annotation.*;
  * @Author qxc
  * @Date 2024 2024/6/3 下午10:59
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor
+ * @PACKAGE com.qxc.blog.aopInterceptor.LocalHandlerInterceptor
  */
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)

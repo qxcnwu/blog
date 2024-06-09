@@ -2,6 +2,7 @@ package com.qxc.blog.self;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 import org.jetbrains.annotations.Contract;
 
 import java.io.Serializable;
@@ -14,6 +15,7 @@ import java.io.Serializable;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
 public class BlogResult extends Result<Object> implements Serializable {
     private final static BlogResult ERROR_BLOG_RESULT = new BlogResult();
 
@@ -21,6 +23,16 @@ public class BlogResult extends Result<Object> implements Serializable {
 
     static {
         ERROR_BLOG_RESULT.setResultEnum(ResultEnum.BLOGEDITERROR);
+    }
+
+    public BlogResult(String articalId) {
+        setResultEnum(ResultEnum.BLOGEDITSUCCESS);
+        setData(articalId);
+    }
+
+    public BlogResult(BlogAndContent blogAndContent) {
+        setResultEnum(ResultEnum.BLOGEDITSUCCESS);
+        setData(blogAndContent);
     }
 
     /**

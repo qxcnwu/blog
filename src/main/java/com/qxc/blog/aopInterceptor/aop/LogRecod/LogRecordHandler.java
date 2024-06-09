@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.LogRecod;
+package com.qxc.blog.aopInterceptor.aop.LogRecod;
 
 import com.qxc.blog.Utiles.AopUtiles;
 import lombok.extern.slf4j.Slf4j;
@@ -16,13 +16,13 @@ import org.springframework.stereotype.Component;
  * @Author qxc
  * @Date 2024 2024/6/8 下午3:03
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.LogRecod
+ * @PACKAGE com.qxc.blog.aopInterceptor.LogRecod
  */
 @Component
 @Aspect
 @Slf4j
 public class LogRecordHandler {
-    @Pointcut("@annotation(com.qxc.blog.AOPInterceptor.LogRecod.LogRecord)")
+    @Pointcut("@annotation(com.qxc.blog.aopInterceptor.aop.LogRecod.LogRecord)")
     public void logRecord() {
     }
 

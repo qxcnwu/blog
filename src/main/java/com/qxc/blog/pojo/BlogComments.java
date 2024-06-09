@@ -40,4 +40,14 @@ public class BlogComments extends BlogCommentsKey {
     public void setContent(String content) {
         this.content = content == null ? null : content.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BlogComments{" +
+                "username='" + username + '\'' +
+                ", commentsid=" + commentsid +
+                ", hasdelete=" + hasdelete +
+                ", content='" + content + '\'' +
+                '}';
+    }
 }

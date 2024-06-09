@@ -42,4 +42,14 @@ public class BlogKey {
     public void setChangedate(Date changedate) {
         this.changedate = changedate;
     }
+
+    @Override
+    public String toString() {
+        return "BlogKey{" +
+                "idx=" + idx +
+                ", username='" + username + '\'' +
+                ", createdate=" + createdate +
+                ", changedate=" + changedate +
+                '}';
+    }
 }

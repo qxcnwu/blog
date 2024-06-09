@@ -54,4 +54,24 @@ public class BlogAccessServiceImpl implements BlogAccessService {
         blogRole.setArticleid(articalId);
         return blogRoleService.checkBlogRole(blogRole, blogEventEnum);
     }
+
+    @Override
+    public boolean checkSee(BlogUser blogUser, String articalId) {
+        return checkRole(blogUser, BlogEventEnum.SEE, articalId);
+    }
+
+    @Override
+    public boolean checkDelete(BlogUser blogUser, String articalId) {
+        return checkRole(blogUser, BlogEventEnum.DELETE, articalId);
+    }
+
+    @Override
+    public boolean checkUpdate(BlogUser blogUser, String articalId) {
+        return checkRole(blogUser, BlogEventEnum.UPDATE, articalId);
+    }
+
+    @Override
+    public boolean checkAdd(BlogUser blogUser, String articalId) {
+        return checkRole(blogUser, BlogEventEnum.CREATE, articalId);
+    }
 }

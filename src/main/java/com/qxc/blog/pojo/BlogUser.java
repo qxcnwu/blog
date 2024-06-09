@@ -72,4 +72,17 @@ public class BlogUser {
     public void setRole(Integer role) {
         this.role = role;
     }
+
+    @Override
+    public String toString() {
+        return "BlogUser{" +
+                "idx=" + idx +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", creattime=" + creattime +
+                ", role=" + role +
+                '}';
+    }
 }

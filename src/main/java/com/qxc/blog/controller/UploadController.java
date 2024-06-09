@@ -1,6 +1,6 @@
 package com.qxc.blog.controller;
 
-import com.qxc.blog.AOPInterceptor.AuthorNeed.AuthorNeed;
+import com.qxc.blog.aopInterceptor.aop.AuthorNeed.AuthorNeed;
 import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.AttachmentResult;
 import com.qxc.blog.self.ImageResult;
@@ -29,13 +29,13 @@ public class UploadController {
 
     @AuthorNeed
     @PostMapping(value = "/image")
-    public ImageResult uploadImage(@CookieValue(value = "token", defaultValue = "qxc") String token, @RequestParam("image") MultipartFile file, @RequestParam(required = false) BlogUser blogUser) {
+    public ImageResult uploadImage(@RequestParam(value = "token") String token, @RequestParam("image") MultipartFile file, @RequestParam(required = false) BlogUser blogUser) {
         return uploadImageFile.uploadFile(file, blogUser);
     }
 
     @AuthorNeed
     @PostMapping(value = "/attachment")
-    public AttachmentResult uploadAttachment(@CookieValue(value = "token", defaultValue = "qxc") String token, @RequestParam("attachment") MultipartFile file, @RequestParam(required = false) BlogUser blogUser) {
+    public AttachmentResult uploadAttachment(@RequestParam(value = "token") String token, @RequestParam("attachment") MultipartFile file, @RequestParam(required = false) BlogUser blogUser) {
         return uploadAttachmentFile.uploadFile(file, blogUser);
     }
 }

@@ -4,9 +4,9 @@ import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @Author qxc
@@ -16,12 +16,10 @@ import java.util.HashMap;
  */
 @Configuration
 @Slf4j
-@PropertySource("classpath:blog.properties")
 @Data
 public class RedisConfiguration {
-    @Value("${redis-key.user-key}")
+    @Value("${rediskey.userKey}")
     private String userKey;
-
-    @Value("#{${redis-key.expire-time}}")
-    private HashMap<String, Integer> expireTime;
+    @Value("#{${rediskey.expireTime}}")
+    private Map<String, Integer> expireTime;
 }

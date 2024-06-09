@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.BlogEvent;
+package com.qxc.blog.aopInterceptor.event.blogEvent;
 
 import com.qxc.blog.self.BlogEventEnum;
 import lombok.Getter;
@@ -11,7 +11,7 @@ import java.util.List;
  * @Author qxc
  * @Date 2024 2024/6/2 下午9:01
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.HotfixEvent
+ * @PACKAGE com.qxc.blog.aopInterceptor.hotfixEvent
  */
 @Getter
 public class BlogEvent extends ApplicationEvent {

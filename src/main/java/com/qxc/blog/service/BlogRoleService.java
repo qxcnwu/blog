@@ -1,6 +1,5 @@
 package com.qxc.blog.service;
 
-import com.qxc.blog.AOPInterceptor.BlogEvent.BlogEvent;
 import com.qxc.blog.pojo.BlogRole;
 import com.qxc.blog.self.BlogEventEnum;
 

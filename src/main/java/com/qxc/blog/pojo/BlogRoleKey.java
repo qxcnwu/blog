@@ -20,4 +20,12 @@ public class BlogRoleKey {
     public void setArticleid(String articleid) {
         this.articleid = articleid == null ? null : articleid.trim();
     }
+
+    @Override
+    public String toString() {
+        return "BlogRoleKey{" +
+                "idx=" + idx +
+                ", articleid='" + articleid + '\'' +
+                '}';
+    }
 }

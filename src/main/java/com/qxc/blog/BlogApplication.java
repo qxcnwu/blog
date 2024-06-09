@@ -1,7 +1,7 @@
 package com.qxc.blog;
 
-import com.qxc.blog.AOPInterceptor.HotfixEvent.HotfixEvent;
-import com.qxc.blog.AOPInterceptor.HotfixEvent.HotfixEventPublisher;
+import com.qxc.blog.aopInterceptor.event.hotfixEvent.HotfixEvent;
+import com.qxc.blog.aopInterceptor.event.hotfixEvent.HotfixEventPublisher;
 import lombok.extern.slf4j.Slf4j;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;

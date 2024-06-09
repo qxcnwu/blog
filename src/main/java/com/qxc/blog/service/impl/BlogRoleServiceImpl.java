@@ -1,6 +1,6 @@
 package com.qxc.blog.service.impl;
 
-import com.qxc.blog.AOPInterceptor.LogRecod.LogRecord;
+import com.qxc.blog.aopInterceptor.aop.LogRecod.LogRecord;
 import com.qxc.blog.dao.BlogRoleMapper;
 import com.qxc.blog.pojo.BlogRole;
 import com.qxc.blog.pojo.BlogRoleExample;
@@ -123,6 +123,10 @@ public class BlogRoleServiceImpl implements BlogRoleService {
     public BlogRole getBlogRole(@NotNull BlogRole blogRole) {
         BlogRoleExample example = new BlogRoleExample();
         example.createCriteria().andArticleidEqualTo(blogRole.getArticleid()).andAllowedusernameEqualTo(blogRole.getAllowedusername());
-        return blogRoleMapper.selectByExample(example).getFirst();
+        final List<BlogRole> blogRoles = blogRoleMapper.selectByExample(example);
+        if (blogRoles.isEmpty()) {
+            return null;
+        }
+        return blogRoles.getFirst();
     }
 }

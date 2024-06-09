@@ -25,7 +25,8 @@ public enum ResultEnum {
     LOGOUTERROR("logout user error", -1),
     LOGOUTSUCCESS("logout user success", 0),
     BLOGEDITERROR("blog edit error", -1),
-    BLOGEDITSUCCESS("blog edit success", 0);
+    BLOGEDITSUCCESS("blog edit success", 0),
+    BLOGCHANNELSUCCESS("blog cannel success", 0);
 
     private final String name;
     private final int code;

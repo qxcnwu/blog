@@ -1,6 +1,10 @@
 package com.qxc.blog.service;
 
+import com.qxc.blog.aopInterceptor.aop.LogRecod.LogRecord;
+import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.BlogAndContent;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @Author qxc
@@ -15,7 +19,7 @@ public interface EditBlogService {
      * @param articalId
      * @return
      */
-    BlogAndContent getBlogById(String articalId);
+    BlogAndContent getBlogById(BlogUser blogUser, String articalId);
 
     /**
      * 创建新博客
@@ -23,7 +27,11 @@ public interface EditBlogService {
      * @param blogAndContent
      * @return
      */
-    boolean addBlog(BlogAndContent blogAndContent) throws Exception;
+    boolean addBlog(BlogUser blogUser, BlogAndContent blogAndContent) throws Exception;
+
+    @Transactional
+    @LogRecord(param = true, time = true)
+    boolean addBlogWithOutCheck(BlogUser blogUser, @NotNull BlogAndContent blogAndContent) throws Exception;
 
     /**
      * 更新博客
@@ -31,7 +39,7 @@ public interface EditBlogService {
      * @param blogAndContent
      * @return
      */
-    boolean updateBlog(BlogAndContent blogAndContent) throws Exception;
+    boolean updateBlog(BlogUser blogUser, BlogAndContent blogAndContent) throws Exception;
 
     /**
      * 删除博客
@@ -39,5 +47,5 @@ public interface EditBlogService {
      * @param blogAndContent
      * @return
      */
-    boolean deleteBlog(BlogAndContent blogAndContent) throws Exception;
+    boolean deleteBlog(BlogUser blogUser, BlogAndContent blogAndContent) throws Exception;
 }

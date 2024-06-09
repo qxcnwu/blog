@@ -1,4 +1,4 @@
-package com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor;
+package com.qxc.blog.aopInterceptor.LocalHandlerInterceptor;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +11,7 @@ import javax.annotation.Resource;
  * @Author qxc
  * @Date 2024 2024/6/3 下午11:07
  * @Version 1.0
- * @PACKAGE com.qxc.blog.AOPInterceptor.LocalHandlerInterceptor
+ * @PACKAGE com.qxc.blog.aopInterceptor.LocalHandlerInterceptor
  */
 @Configuration
 @Slf4j

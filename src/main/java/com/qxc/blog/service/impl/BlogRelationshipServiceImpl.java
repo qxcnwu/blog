@@ -1,6 +1,6 @@
 package com.qxc.blog.service.impl;
 
-import com.qxc.blog.AOPInterceptor.LogRecod.LogRecord;
+import com.qxc.blog.aopInterceptor.aop.LogRecod.LogRecord;
 import com.qxc.blog.dao.BlogRelationshipMapper;
 import com.qxc.blog.pojo.BlogRelationship;
 import com.qxc.blog.pojo.BlogRelationshipExample;

@@ -1,6 +1,8 @@
 package com.qxc.blog.service.impl;
 
-import com.qxc.blog.AOPInterceptor.LogRecod.LogRecord;
+import com.qxc.blog.aopInterceptor.aop.LogRecod.LogRecord;
+import com.qxc.blog.aopInterceptor.event.hotfixEvent.HotfixEvent;
+import com.qxc.blog.configuration.BaseConfiguration;
 import com.qxc.blog.dao.BlogMapper;
 import com.qxc.blog.pojo.Blog;
 import com.qxc.blog.pojo.BlogExample;
@@ -8,10 +10,12 @@ import com.qxc.blog.self.BlogDeleteEnum;
 import com.qxc.blog.service.BlogService;
 import jakarta.annotation.Nullable;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -21,10 +25,13 @@ import java.util.List;
  * @PACKAGE com.qxc.blog.service.impl
  */
 @Service
-public class BlogServiceImpl implements BlogService {
+public class BlogServiceImpl implements BlogService, ApplicationListener<HotfixEvent> {
 
     @Resource
     private BlogMapper blogMapper;
+
+    @Resource
+    private BaseConfiguration baseConfiguration;
 
     /**
      * 新增博客
@@ -123,5 +130,31 @@ public class BlogServiceImpl implements BlogService {
         BlogExample example = new BlogExample();
         example.createCriteria().andArticleidEqualTo(id).andHasdeleteEqualTo(BlogDeleteEnum.CONTAINS.ordinal());
         return blogMapper.selectByExample(example).stream().findFirst().orElse(null);
+    }
+
+    /**
+     * 监听目标
+     *
+     * @param event
+     */
+    @Override
+    @LogRecord
+    public void onApplicationEvent(@NotNull HotfixEvent event) {
+        Blog blog = new Blog();
+        blog.setRole(0);
+        blog.setHasdelete(BlogDeleteEnum.CONTAINS.ordinal());
+        blog.setArticleid(baseConfiguration.getRootRS());
+        blog.setTitle(baseConfiguration.getBaseTitle());
+        blog.setCreatedate(new Date());
+        blog.setChangedate(new Date());
+        blog.setUsername("admin");
+        if (contentsBlog(blog)) {
+            return;
+        }
+        try {
+            addBlog(blog);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 }

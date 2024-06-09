@@ -2,6 +2,7 @@ package com.qxc.blog.service.impl;
 
 import com.qxc.blog.pojo.Blog;
 import com.qxc.blog.pojo.BlogContent;
+import com.qxc.blog.pojo.BlogUser;
 import com.qxc.blog.self.BlogAndContent;
 import com.qxc.blog.self.BlogRoleEnum;
 import org.junit.Test;
@@ -33,7 +34,7 @@ public class TestAopAndTransaction {
         Blog blog = new Blog();
         blog.setArticleid("test");
         blog.setTitle("title");
-        blog.setRole(BlogRoleEnum.EVERYONE.toString());
+        blog.setRole(BlogRoleEnum.EVERYONE.getCode());
         blog.setHasdelete(0);
         blog.setUsername("qxc");
         final BlogContent blogContent = new BlogContent();
@@ -42,6 +43,6 @@ public class TestAopAndTransaction {
         blogAndContent.setBlog(blog);
         blogAndContent.setBlogContent(blogContent);
         blogAndContent.setCreate();
-        editBlogService.addBlog(blogAndContent);
+        editBlogService.addBlog(new BlogUser(), blogAndContent);
     }
 }

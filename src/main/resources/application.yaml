@@ -1,6 +1,6 @@
 spring:
   application:
-   name: blog
+    name: blog
   datasource:
     username: root
     password: 123456
@@ -38,3 +38,23 @@ mybatis:
     map-underscore-to-camel-case: true
 server:
   port: 8001
+
+upload:
+  uploadImagePath: D:\\JAVA\\Blog\\Blog\\upload
+  uploadImageTmpPath: D:\\JAVA\\Blog\\Blog\\upload
+  uploadAttachmentPath: D:\\JAVA\\Blog\\Blog\\upload
+  uploadAttachmentTmpPath: D:\\JAVA\\Blog\\Blog\\upload
+base:
+  preUrl: http://127.0.0.1:8080
+  ipv4Url: 127.0.0.1
+  ipv6Url: ::1
+  jwtCreat: "token"
+  cookieName: "qwertyuiop"
+  rootRS: "base"
+  baseName: "的默认空间"
+  baseTitle: "默认空间"
+rediskey:
+  userKey: "BLOGUSER"
+  expireTime: "{ 'BLOGUSER': 10000 }"
+out-time:
+  addLogTime: 5
